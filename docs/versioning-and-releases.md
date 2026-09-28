@@ -3,8 +3,8 @@
 ## Current state
 
 All packages share one version, `0.1.0-preview.1`. Nothing is published to any npm registry yet —
-consumers install via npm's git-subdirectory syntax (below), mirroring the .NET platform's own
-Phase 1 stance ("project references during coordinated development").
+consumers install via a sibling-checkout `file:` dependency (below), mirroring the .NET platform's
+own Phase 1 stance ("project references during coordinated development").
 
 ## Semantic versioning policy (once published)
 
@@ -19,17 +19,40 @@ Phase 1 stance ("project references during coordinated development").
 
 ## Interim consumption strategy
 
-npm supports installing a subdirectory of a git repository directly, as long as that subdirectory
-has its own `package.json` — which every package here does:
+**npm's `<git-url>#<commit>:<subdirectory>` syntax does not do what it looks like it does** — this
+was the original plan documented here, and it turned out to be wrong. Verified directly: installing
+`@pravnix/ai-node@git+https://github.com/raibhaskarr/AIPlatformNode.git#main:packages/node` clones
+the *whole* repo and installs its private, unbuilt monorepo root (`name: "aiplatformnode"`) as the
+package — the `:packages/node` suffix is silently ignored by npm. (Some tools, like pip, support a
+"subdirectory" selector on a VCS URL; plain npm does not.) Don't use this form.
 
-```bash
-npm install "@pravnix/ai-node@git+https://github.com/raibhaskarr/AIPlatformNode.git#main:packages/node"
-```
+**What actually works: a sibling git checkout consumed via a `file:` dependency.**
 
-This is the fastest path for coordinated development across repos, with zero packaging overhead,
-and needs no private registry. Its limitation: npm resolves and rebuilds straight from source on
-every install (no prebuilt artifact caching from a registry), and it depends on this repo's `main`
-branch being buildable at all times.
+1. Clone this repo as a sibling of the consuming product's repo (same parent directory) and build
+   it once:
+   ```bash
+   git clone https://github.com/raibhaskarr/AIPlatformNode.git ../AIPlatformNode
+   (cd ../AIPlatformNode && npm install && npm run build)
+   ```
+2. In the product's `package.json`, depend on the one package you actually need via a relative
+   `file:` path into that sibling checkout:
+   ```json
+   { "dependencies": { "@pravnix/ai-node": "file:../AIPlatformNode/packages/node" } }
+   ```
+3. `npm install` in the product repo. This is enough — you do **not** need to separately list every
+   other `@pravnix/*` package `@pravnix/ai-node` itself depends on. npm creates a symlink for
+   `@pravnix/ai-node`; Node's module resolution follows that symlink to its real location inside the
+   AIPlatformNode checkout and finds all of *that* checkout's own already-built, already-linked
+   workspace siblings there (from step 1's `npm install`) — the same way it would if you were
+   running code from inside this repo directly. Verified end-to-end: `require("@pravnix/ai-node")`
+   from an unrelated sibling project resolves `createAiPlatform`, every provider factory, and a real
+   orchestrator call against the fake provider, with only one entry in the consuming project's own
+   `package.json`.
+
+This needs both repos checked out as siblings (same limitation the .NET platform's own Phase 1 project-references
+approach has) — in CI, add a step that clones and builds this repo into a sibling path *before* the
+product's own install/build step. See PravnyaAdmin's `.github/workflows/deploy.yml` for a working
+example once that integration lands.
 
 **Actually wiring PravnyaAdmin/Pravnya to consume this package is a separate, later integration
 pass — not part of this repo's initial build-out.**

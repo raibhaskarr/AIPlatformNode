@@ -1,5 +1,9 @@
 # Product Integration
 
+See [versioning-and-releases.md](versioning-and-releases.md) for how to actually install
+`@pravnix/ai-node` into your product (a sibling-checkout `file:` dependency today — the git
+`:subdirectory` syntax you might expect does **not** work with plain npm).
+
 ## Build your own facade
 
 Never call `@pravnix/ai-orchestration` or inject `orchestrator` directly into a controller/route
