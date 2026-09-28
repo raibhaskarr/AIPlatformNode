@@ -1,0 +1,19 @@
+{
+  "name": "@pravnix/ai-observability",
+  "version": "0.1.0-preview.1",
+  "description": "Default (metadata-only) telemetry sink for the Pravnix AI platform.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@pravnix/ai-abstractions": "0.1.0-preview.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

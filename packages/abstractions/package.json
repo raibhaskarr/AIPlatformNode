@@ -1,0 +1,19 @@
+{
+  "name": "@pravnix/ai-abstractions",
+  "version": "0.1.0-preview.1",
+  "description": "Contracts for the Pravnix AI platform: providers, resolvers, orchestrator, telemetry.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@pravnix/ai-core": "0.1.0-preview.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

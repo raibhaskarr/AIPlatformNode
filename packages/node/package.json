@@ -1,0 +1,26 @@
+{
+  "name": "@pravnix/ai-node",
+  "version": "0.1.0-preview.1",
+  "description": "Node wiring layer for the Pravnix AI platform: explicit factory functions in place of a DI container. The single entry point most products import.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@pravnix/ai-abstractions": "0.1.0-preview.1",
+    "@pravnix/ai-core": "0.1.0-preview.1",
+    "@pravnix/ai-observability": "0.1.0-preview.1",
+    "@pravnix/ai-orchestration": "0.1.0-preview.1",
+    "@pravnix/ai-provider-anthropic": "0.1.0-preview.1",
+    "@pravnix/ai-provider-fake": "0.1.0-preview.1",
+    "@pravnix/ai-provider-gemini": "0.1.0-preview.1",
+    "@pravnix/ai-provider-openai": "0.1.0-preview.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

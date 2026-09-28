@@ -1,0 +1,20 @@
+{
+  "name": "@pravnix/ai-structured-output",
+  "version": "0.1.0-preview.1",
+  "description": "Turns raw model text into a typed value or an explicit typed failure. No default-on-failure, ever.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@pravnix/ai-core": "0.1.0-preview.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

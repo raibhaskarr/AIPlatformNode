@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "references": [
+    { "path": "../core" },
+    { "path": "../abstractions" },
+    { "path": "../observability" },
+    { "path": "../orchestration" },
+    { "path": "../providers/fake" },
+    { "path": "../providers/anthropic" },
+    { "path": "../providers/gemini" },
+    { "path": "../providers/openai" }
+  ],
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts"]
+}

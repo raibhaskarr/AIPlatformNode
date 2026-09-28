@@ -1,0 +1,22 @@
+{
+  "name": "@pravnix/ai-provider-openai",
+  "version": "0.1.0-preview.1",
+  "description": "Generic OpenAI AiProvider (Chat Completions API), built on the official openai package.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@pravnix/ai-abstractions": "0.1.0-preview.1",
+    "@pravnix/ai-core": "0.1.0-preview.1",
+    "@pravnix/ai-provider-support": "0.1.0-preview.1",
+    "openai": "^4.68.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

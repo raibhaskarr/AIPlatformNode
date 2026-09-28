@@ -1,0 +1,23 @@
+{
+  "name": "@pravnix/ai-orchestration",
+  "version": "0.1.0-preview.1",
+  "description": "AiOrchestrator: the execution pipeline (validate, resolve, execute, telemetry, structured-output repair, streaming).",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@pravnix/ai-abstractions": "0.1.0-preview.1",
+    "@pravnix/ai-core": "0.1.0-preview.1",
+    "@pravnix/ai-structured-output": "0.1.0-preview.1"
+  },
+  "devDependencies": {
+    "@pravnix/ai-observability": "0.1.0-preview.1",
+    "@pravnix/ai-provider-fake": "0.1.0-preview.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

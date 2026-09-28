@@ -1,0 +1,18 @@
+{
+  "name": "basic-sample",
+  "version": "0.1.0-preview.1",
+  "private": true,
+  "description": "Runnable smoke test for @pravnix/ai-node against the fake provider: generate, structured generate, streaming.",
+  "scripts": {
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@pravnix/ai-core": "0.1.0-preview.1",
+    "@pravnix/ai-node": "0.1.0-preview.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

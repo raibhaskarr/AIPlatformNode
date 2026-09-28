@@ -1,0 +1,22 @@
+{
+  "name": "@pravnix/ai-provider-gemini",
+  "version": "0.1.0-preview.1",
+  "description": "Gemini AiProvider, built on @google/generative-ai.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@pravnix/ai-abstractions": "0.1.0-preview.1",
+    "@pravnix/ai-core": "0.1.0-preview.1",
+    "@pravnix/ai-provider-support": "0.1.0-preview.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@pravnix/ai-provider-anthropic",
+  "version": "0.1.0-preview.1",
+  "description": "Claude AiProvider, built on @anthropic-ai/sdk.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@pravnix/ai-abstractions": "0.1.0-preview.1",
+    "@pravnix/ai-core": "0.1.0-preview.1",
+    "@pravnix/ai-provider-support": "0.1.0-preview.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

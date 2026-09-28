@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/core" },
+    { "path": "packages/abstractions" },
+    { "path": "packages/structured-output" },
+    { "path": "packages/provider-support" },
+    { "path": "packages/observability" },
+    { "path": "packages/providers/fake" },
+    { "path": "packages/orchestration" },
+    { "path": "packages/providers/anthropic" },
+    { "path": "packages/providers/gemini" },
+    { "path": "packages/providers/openai" },
+    { "path": "packages/node" },
+    { "path": "samples/basic-sample" }
+  ]
+}
