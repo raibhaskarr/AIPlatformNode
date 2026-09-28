@@ -20,7 +20,9 @@ export function resolveGeminiOptions(options: GeminiProviderOptions): ResolvedGe
   }
   return {
     apiKey: options.apiKey,
-    model: options.model ?? "gemini-2.0-flash",
+    // Google's current recommended default general-purpose model (2026-09). Bump when a newer
+    // model line ships — callers can always override via `model`.
+    model: options.model ?? "gemini-3.8-flash",
     maxOutputTokens: options.maxOutputTokens ?? 4000,
     temperature: options.temperature ?? 0.2,
     maxRetries: options.maxRetries ?? 3,

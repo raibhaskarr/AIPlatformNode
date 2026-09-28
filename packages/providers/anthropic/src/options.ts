@@ -26,7 +26,9 @@ export function resolveAnthropicOptions(options: AnthropicProviderOptions): Reso
   }
   return {
     apiKey: options.apiKey,
-    model: options.model ?? "claude-sonnet-4-5",
+    // Anthropic's current general-purpose default (2026-09). Bump when a newer model line ships —
+    // callers can always override via `model` without waiting for this default to change.
+    model: options.model ?? "claude-sonnet-5",
     maxTokens: options.maxTokens ?? 4000,
     temperature: options.temperature ?? 0.2,
     timeoutMs: options.timeoutMs ?? 60_000,
