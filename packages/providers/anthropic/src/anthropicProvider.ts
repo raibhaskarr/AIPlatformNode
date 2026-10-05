@@ -24,13 +24,14 @@ export class AnthropicAiProvider implements AiProvider {
   async generate(request: AiRequest, signal?: AbortSignal): Promise<AiResponse> {
     const model = request.options?.modelOverride ?? this.options.model;
     try {
+      const temperature = request.options?.temperature ?? this.options.temperature;
       const message = await withRetry(
         () =>
           this.client.messages.create(
             {
               model,
               max_tokens: request.options?.maxOutputTokens ?? this.options.maxTokens,
-              temperature: request.options?.temperature ?? this.options.temperature,
+              ...(temperature !== undefined ? { temperature } : {}),
               system: request.systemPrompt,
               messages: mapMessages(request.messages),
             },
@@ -66,11 +67,12 @@ export class AnthropicAiProvider implements AiProvider {
 
   async *generateStream(request: AiRequest, signal?: AbortSignal): AsyncIterable<AiStreamChunk> {
     const model = request.options?.modelOverride ?? this.options.model;
+    const temperature = request.options?.temperature ?? this.options.temperature;
     const stream = this.client.messages.stream(
       {
         model,
         max_tokens: request.options?.maxOutputTokens ?? this.options.maxTokens,
-        temperature: request.options?.temperature ?? this.options.temperature,
+        ...(temperature !== undefined ? { temperature } : {}),
         system: request.systemPrompt,
         messages: mapMessages(request.messages),
       },
